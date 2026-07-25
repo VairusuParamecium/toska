@@ -15,7 +15,7 @@
 
 body {
     background-color: var(--primary-dark);
-    background-image: url('background.jpg');
+    background-image: url('background.png');
     background-size: cover;
     background-attachment: fixed;
     background-position: center;
@@ -197,7 +197,7 @@ nav {
 }
 
 .logo::before {
-    content: "悲";
+    content: "🐱 ";
 }
 
 nav ul {
@@ -461,6 +461,7 @@ section {
     border-radius: 12px;
     overflow: hidden;
     cursor: pointer;
+    group: 1;
     border: 1px solid rgba(204, 0, 0, 0.1);
 }
 
