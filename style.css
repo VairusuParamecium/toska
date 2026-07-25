@@ -197,7 +197,7 @@ nav {
 }
 
 .logo::before {
-    content: "🐱 ";
+    content: "悲";
 }
 
 nav ul {
@@ -461,7 +461,6 @@ section {
     border-radius: 12px;
     overflow: hidden;
     cursor: pointer;
-    group: 1;
     border: 1px solid rgba(204, 0, 0, 0.1);
 }
 
