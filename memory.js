@@ -101,7 +101,7 @@ function onCorrectAnswer() {
         popup.classList.remove('active');
         // Aguardar animação de nuvem
         setTimeout(() => {
-            window.location.href = 'index_toska.html';
+            window.location.href = 'index.html';
         }, 1000);
     }, 1500);
 }
@@ -123,7 +123,7 @@ function onWrongAnswer() {
     setTimeout(() => {
         resetPopup();
         // Voltar para página inicial
-        window.location.href = 'index_toska.html';
+        window.location.href = 'index.html';
     }, 2000);
 }
 
