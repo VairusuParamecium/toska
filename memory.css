@@ -1,0 +1,270 @@
+/* ESTILOS ESPECÍFICOS PARA PÁGINAS DE MEMÓRIA */
+
+/* BOTÃO VOLTAR */
+.btn-back {
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    background: var(--accent-red);
+    color: var(--text-light);
+    padding: 0.8rem 1.5rem;
+    border-radius: 50px;
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 0.9rem;
+    letter-spacing: 1px;
+    z-index: 500;
+    transition: all 0.3s ease;
+    text-shadow: 0 0 5px rgba(204, 0, 0, 0.3);
+}
+
+.btn-back:hover {
+    background: var(--accent-dark-red);
+    box-shadow: 0 0 20px rgba(204, 0, 0, 0.5);
+    transform: translateX(-5px);
+}
+
+/* SEÇÃO DE MEMÓRIA */
+.memory-section {
+    min-height: 100vh;
+    padding: 100px 2rem 50px;
+    background: linear-gradient(180deg, rgba(26, 26, 26, 0.8) 0%, rgba(10, 10, 10, 0.9) 100%);
+    z-index: 2;
+    position: relative;
+}
+
+.memory-content {
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.memory-title {
+    font-size: 3rem;
+    font-weight: 900;
+    color: var(--accent-red);
+    text-shadow: 0 0 20px rgba(204, 0, 0, 0.5);
+    margin-bottom: 3rem;
+    text-align: center;
+    letter-spacing: 2px;
+}
+
+.memory-paragraph {
+    font-size: 1.2rem;
+    line-height: 1.9;
+    color: var(--text-muted);
+    margin-bottom: 2.5rem;
+    text-align: justify;
+    font-family: 'Courier New', monospace;
+    padding: 1.5rem;
+    background: linear-gradient(135deg, rgba(30, 30, 30, 0.5) 0%, rgba(20, 20, 20, 0.6) 100%);
+    border-left: 3px solid var(--accent-red);
+    border-radius: 8px;
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
+
+.memory-paragraph.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* POP-UP */
+.memory-popup {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.8);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    z-index: 10000;
+    backdrop-filter: blur(5px);
+}
+
+.memory-popup.active {
+    display: flex;
+}
+
+.popup-content {
+    background: linear-gradient(135deg, #2a1a1a 0%, #1a0a0a 100%);
+    border: 2px solid var(--accent-red);
+    border-radius: 12px;
+    padding: 2rem;
+    max-width: 500px;
+    width: 90%;
+    box-shadow: 0 0 40px rgba(204, 0, 0, 0.4);
+    animation: popupAppear 0.3s ease-out;
+}
+
+@keyframes popupAppear {
+    from {
+        opacity: 0;
+        transform: scale(0.8);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+.popup-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.5rem;
+    border-bottom: 2px solid rgba(204, 0, 0, 0.3);
+    padding-bottom: 1rem;
+}
+
+.popup-header h2 {
+    font-size: 1.8rem;
+    color: var(--accent-red);
+    text-shadow: 0 0 15px rgba(204, 0, 0, 0.5);
+    letter-spacing: 2px;
+}
+
+.popup-close {
+    background: transparent;
+    border: none;
+    color: var(--accent-red);
+    font-size: 2rem;
+    cursor: pointer;
+    transition: transform 0.2s ease;
+    padding: 0;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.popup-close:hover {
+    transform: scale(1.2);
+}
+
+.popup-body {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.popup-question {
+    font-size: 1.3rem;
+    color: var(--text-light);
+    font-weight: 700;
+    text-align: center;
+    letter-spacing: 1px;
+}
+
+.popup-input {
+    padding: 0.8rem 1rem;
+    border: 2px solid var(--accent-red);
+    background: rgba(10, 10, 10, 0.9);
+    color: var(--text-light);
+    font-family: 'Courier New', monospace;
+    font-size: 1rem;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+}
+
+.popup-input:focus {
+    outline: none;
+    box-shadow: 0 0 15px rgba(204, 0, 0, 0.5);
+    background: rgba(20, 20, 20, 0.9);
+}
+
+.popup-input::placeholder {
+    color: var(--text-muted);
+}
+
+.popup-buttons {
+    display: flex;
+    gap: 1rem;
+}
+
+.popup-btn-submit {
+    flex: 1;
+    padding: 0.8rem 1.5rem;
+    background: var(--accent-red);
+    color: var(--text-light);
+    border: none;
+    border-radius: 8px;
+    font-weight: 700;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-shadow: 0 0 5px rgba(204, 0, 0, 0.3);
+    letter-spacing: 1px;
+}
+
+.popup-btn-submit:hover {
+    background: var(--accent-dark-red);
+    box-shadow: 0 0 20px rgba(204, 0, 0, 0.5);
+    transform: translateY(-2px);
+}
+
+.popup-btn-submit:active {
+    transform: translateY(0);
+}
+
+/* EFEITO DE NÚMEROS EXPLODINDO */
+.number-burst {
+    position: fixed;
+    font-size: 2rem;
+    color: var(--accent-red);
+    font-family: 'Courier New', monospace;
+    font-weight: bold;
+    pointer-events: none;
+    animation: burst 1s ease-out forwards;
+    text-shadow: 0 0 10px rgba(204, 0, 0, 0.5);
+}
+
+@keyframes burst {
+    0% {
+        opacity: 1;
+        transform: translate(0, 0) scale(1);
+    }
+    100% {
+        opacity: 0;
+        transform: translate(var(--tx), var(--ty)) scale(0);
+    }
+}
+
+/* RESPONSIVO */
+@media (max-width: 768px) {
+    .btn-back {
+        top: 10px;
+        left: 10px;
+        padding: 0.6rem 1rem;
+        font-size: 0.8rem;
+    }
+
+    .memory-section {
+        padding: 80px 1rem 50px;
+    }
+
+    .memory-title {
+        font-size: 2rem;
+    }
+
+    .memory-paragraph {
+        font-size: 1rem;
+        padding: 1rem;
+        margin-bottom: 1.5rem;
+    }
+
+    .popup-content {
+        padding: 1.5rem;
+    }
+
+    .popup-header h2 {
+        font-size: 1.5rem;
+    }
+
+    .popup-question {
+        font-size: 1.1rem;
+    }
+}

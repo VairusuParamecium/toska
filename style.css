@@ -15,7 +15,7 @@
 
 body {
     background-color: var(--primary-dark);
-    background-image: url('background.jpg');
+    background-image: url('background.png');
     background-size: cover;
     background-attachment: fixed;
     background-position: center;
@@ -197,7 +197,7 @@ nav {
 }
 
 .logo::before {
-    content: "失";
+    content: "🐱 ";
 }
 
 nav ul {
@@ -410,6 +410,9 @@ section {
     transition: all 0.3s ease;
     cursor: pointer;
     backdrop-filter: blur(5px);
+    text-decoration: none;
+    color: inherit;
+    display: block;
 }
 
 .news-card:hover {
@@ -458,6 +461,7 @@ section {
     border-radius: 12px;
     overflow: hidden;
     cursor: pointer;
+    group: 1;
     border: 1px solid rgba(204, 0, 0, 0.1);
 }
 

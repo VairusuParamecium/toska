@@ -3,7 +3,7 @@ window.addEventListener('load', () => {
     setTimeout(() => {
         const splashScreen = document.getElementById('splashScreen');
         if (splashScreen) {
-            splashScreen.style.pointerEvents = 'none';
+            splashScreen.style.pointerEvents = '    none';
         }
     }, 3000);
 });
@@ -15,9 +15,9 @@ function createFloatingNumber() {
     floatingNum.className = 'floating-number';
     floatingNum.textContent = randomNumber;
     
-    // Posição aleatória na tela
+    // Posição aleatória na tela (em toda a altura)
     const randomX = Math.random() * (window.innerWidth - 50);
-    const randomY = window.innerHeight + 50;
+    const randomY = Math.random() * window.innerHeight - 100;
     
     floatingNum.style.left = randomX + 'px';
     floatingNum.style.top = randomY + 'px';

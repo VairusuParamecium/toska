@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Memória 3 - Notas em Toska</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="memory.css">
+</head>
+
+<body>
+    <!-- SPLASH SCREEN -->
+    <div class="splash-screen" id="splashScreen">
+        <div class="splash-content">
+            <h1 class="splash-title">Notas em Toska</h1>
+            <p class="splash-subtitle">~ Uma Jornada através da Mente ~</p>
+        </div>
+    </div>
+
+    <!-- NÚMERO FIXO -->
+    <span class="fixed-number" id="memoryTrigger">23:59</span>
+
+    <!-- BOTÃO VOLTAR -->
+    <a href="index_toska.html" class="btn-back">← Voltar</a>
+
+    <!-- CONTEÚDO PRINCIPAL -->
+    <section class="memory-section">
+        <div class="memory-content">
+            <h1 class="memory-title">Pouco tempo depois do incidente.</h1>
+            
+            <p class="memory-paragraph reveal-on-scroll">
+                Depois de um tempo, o clarão daquele fogo começou a ficar vazio no fundo da mente. Os rostos 
+                se escurecendo. Os sons se tornando distantes, como se alguém tivesse reduzido o volume do 
+                mundo inteiro apenas para mim.
+            </p>
+
+            <p class="memory-paragraph reveal-on-scroll">
+                Eu não chorei. Não então. Talvez tivesse perdido a capacidade, ou talvez apenas não merecesse 
+                a clemência das lágrimas. O corpo pode ser uma prisão curiosa, mantendo você acordado enquanto 
+                a mente grita por fuga.
+            </p>
+
+            <p class="memory-paragraph reveal-on-scroll">
+                Havia pessoas ao meu redor, mas não as sentia. Havia palavras sendo ditas, mas não as entendia. 
+                Era como estar em uma sala cheia de gente enquanto flutua sozinho no vácuo do espaço. Simultaneamente 
+                cercado e infinitamente sozinho.
+            </p>
+
+            <p class="memory-paragraph reveal-on-scroll">
+                O incidente deixou cicatrizes que não são visíveis. As piores sempre são assim, não é verdade? 
+                As que ninguém pode ver, as que você carrega sozinho. E quanto mais tempo passa, menos as pessoas 
+                acreditam que elas ainda existem.
+            </p>
+
+            <p class="memory-paragraph reveal-on-scroll">
+                Mas elas existem. Meu Deus, como existem. Às vezes, eu juro que posso sentir cada uma delas 
+                pulsando sob minha pele, como um segundo coração que bate de forma completamente errada.
+            </p>
+        </div>
+    </section>
+
+    <!-- POP-UP DE PERGUNTA -->
+    <div class="memory-popup" id="memoryPopup">
+        <div class="popup-content">
+            <div class="popup-header">
+                <h2>???</h2>
+                <button class="popup-close" id="popupClose">&times;</button>
+            </div>
+            
+            <div class="popup-body">
+                <p class="popup-question">Como é segurar um cubo?</p>
+                
+                <input type="text" id="answerInput" class="popup-input" placeholder="Digite sua resposta...">
+                
+                <div class="popup-buttons">
+                    <button class="popup-btn-submit" id="submitAnswer">Responder</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+    <script src="memory.js"></script>
+</body>
+
+</html>

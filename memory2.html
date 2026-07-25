@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Memória 2 - Notas em Toska</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="memory.css">
+</head>
+
+<body>
+    <!-- SPLASH SCREEN -->
+    <div class="splash-screen" id="splashScreen">
+        <div class="splash-content">
+            <h1 class="splash-title">Notas em Toska</h1>
+            <p class="splash-subtitle">~ Uma Jornada através da Mente ~</p>
+        </div>
+    </div>
+
+    <!-- NÚMERO FIXO -->
+    <span class="fixed-number" id="memoryTrigger">23:59</span>
+
+    <!-- BOTÃO VOLTAR -->
+    <a href="index_toska.html" class="btn-back">← Voltar</a>
+
+    <!-- CONTEÚDO PRINCIPAL -->
+    <section class="memory-section">
+        <div class="memory-content">
+            <h1 class="memory-title">Pós... Após algum tempo?</h1>
+            
+            <p class="memory-paragraph reveal-on-scroll">
+                Lembro que não durou muito. A vida já escorregando pelos meus dedos, e um grito belo em nota alta. 
+                Estranho. Desconfortável. Como se algo essencial estivesse sendo rasgado de dentro de mim, e eu 
+                tivesse que fingir que tudo estava bem.
+            </p>
+
+            <p class="memory-paragraph reveal-on-scroll">
+                O tempo não cura as feridas como dizem. Ele apenas as adormece. E quando você menos espera, 
+                elas acordam com uma violência renovada, como se a dor tivesse apenas estado descansando 
+                para reencontrar sua força total.
+            </p>
+
+            <p class="memory-paragraph reveal-on-scroll">
+                Não consigo dizer quando começou a mudança. Foi gradual, como uma cor desbotando lentamente 
+                da memória. Ou foi súbito, como um vidro quebrando? Não importa. O resultado é o mesmo: 
+                estou aqui, e não sou quem era antes.
+            </p>
+
+            <p class="memory-paragraph reveal-on-scroll">
+                As pessoas falam sobre "superação", sobre "seguir em frente". Mas ninguém fala sobre o peso 
+                de carregar os pedaços de si mesmo pelas ruas. Ninguém fala sobre como é caminhar em um mundo 
+                que continua girando enquanto você está congelado em um momento específico.
+            </p>
+
+            <p class="memory-paragraph reveal-on-scroll">
+                Talvez eu nunca saia daqui. Talvez esta seja minha nova realidade. Um pós-algum tempo, 
+                suspenso entre o que era e o que nunca será.
+            </p>
+        </div>
+    </section>
+
+    <!-- POP-UP DE PERGUNTA -->
+    <div class="memory-popup" id="memoryPopup">
+        <div class="popup-content">
+            <div class="popup-header">
+                <h2>???</h2>
+                <button class="popup-close" id="popupClose">&times;</button>
+            </div>
+            
+            <div class="popup-body">
+                <p class="popup-question">Como é segurar um cubo?</p>
+                
+                <input type="text" id="answerInput" class="popup-input" placeholder="Digite sua resposta...">
+                
+                <div class="popup-buttons">
+                    <button class="popup-btn-submit" id="submitAnswer">Responder</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+    <script src="memory.js"></script>
+</body>
+
+</html>
