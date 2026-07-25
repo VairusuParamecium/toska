@@ -68,7 +68,7 @@ if (submitBtn) {
     submitBtn.addEventListener('click', () => {
         const answer = answerInput.value.trim().toLowerCase();
         
-        if (answer === 'interligado') {
+        if (answer === 'Frio' || 'Todos Morremos Sozinhos' || 'Mais Do Que Imagina') {
             onCorrectAnswer();
         } else {
             onWrongAnswer();
