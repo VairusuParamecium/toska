@@ -11,79 +11,42 @@ function getCurrentMemory() {
 
 const currentMemory = getCurrentMemory();
 
-// ===== REVEAL DE PARÁGRAFOS AO SCROLL =====
+// ===== POP-UP DE PERGUNTA =====
 document.addEventListener('DOMContentLoaded', () => {
-    // Remover splash após 3 segundos
-    setTimeout(() => {
-        const splashScreen = document.getElementById('splashScreen');
-        if (splashScreen) {
-            splashScreen.style.pointerEvents = 'none';
-        }
-    }, 3000);
+    const popup = document.getElementById('memoryPopup');
+    const closeBtn = document.getElementById('popupClose');
+    const submitBtn = document.getElementById('submitAnswer');
+    const answerInput = document.getElementById('answerInput');
 
-    // Observer para reveal de parágrafos
-    const observerOptions = {
-        threshold: 0.2,
-        rootMargin: '0px 0px -100px 0px'
-    };
+    // Fechar pop-up ao clicar no X
+    if (closeBtn) {
+        closeBtn.addEventListener('click', () => {
+            resetPopup();
+        });
+    }
 
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.classList.add('visible');
+    // Validar resposta
+    if (submitBtn) {
+        submitBtn.addEventListener('click', () => {
+            const answer = answerInput.value.trim().toLowerCase();
+            
+            if (answer === 'interligado') {
+                onCorrectAnswer();
+            } else {
+                onWrongAnswer();
             }
         });
-    }, observerOptions);
+    }
 
-    document.querySelectorAll('.reveal-on-scroll').forEach(paragraph => {
-        observer.observe(paragraph);
-    });
+    // Validar ao pressionar Enter
+    if (answerInput) {
+        answerInput.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') {
+                submitBtn.click();
+            }
+        });
+    }
 });
-
-// ===== POP-UP DE PERGUNTA =====
-const popup = document.getElementById('memoryPopup');
-const trigger = document.getElementById('memoryTrigger');
-const closeBtn = document.getElementById('popupClose');
-const submitBtn = document.getElementById('submitAnswer');
-const answerInput = document.getElementById('answerInput');
-
-// Abrir pop-up ao clicar no número fixo
-if (trigger) {
-    trigger.addEventListener('click', (e) => {
-        e.preventDefault();
-        popup.classList.add('active');
-        answerInput.focus();
-    });
-}
-
-// Fechar pop-up ao clicar no X
-if (closeBtn) {
-    closeBtn.addEventListener('click', () => {
-        resetPopup();
-    });
-}
-
-// Validar resposta
-if (submitBtn) {
-    submitBtn.addEventListener('click', () => {
-        const answer = answerInput.value.trim().toLowerCase();
-        
-        if (answer === 'Frio' || 'Todos Morremos Sozinhos' || 'Mais Do Que Imagina') {
-            onCorrectAnswer();
-        } else {
-            onWrongAnswer();
-        }
-    });
-}
-
-// Validar ao pressionar Enter
-if (answerInput) {
-    answerInput.addEventListener('keypress', (e) => {
-        if (e.key === 'Enter') {
-            submitBtn.click();
-        }
-    });
-}
 
 // ===== FUNÇÃO: RESPOSTA CORRETA =====
 function onCorrectAnswer() {
@@ -98,6 +61,7 @@ function onCorrectAnswer() {
     
     // Fechar pop-up após animação
     setTimeout(() => {
+        const popup = document.getElementById('memoryPopup');
         popup.classList.remove('active');
         // Aguardar animação de nuvem
         setTimeout(() => {
@@ -108,6 +72,8 @@ function onCorrectAnswer() {
 
 // ===== FUNÇÃO: RESPOSTA INCORRETA =====
 function onWrongAnswer() {
+    const answerInput = document.getElementById('answerInput');
+    
     // Dar feedback visual
     answerInput.style.animation = 'shake 0.5s ease-in-out';
     
@@ -129,48 +95,56 @@ function onWrongAnswer() {
 
 // ===== FUNÇÃO: RESETAR POP-UP =====
 function resetPopup() {
+    const popup = document.getElementById('memoryPopup');
+    const answerInput = document.getElementById('answerInput');
     popup.classList.remove('active');
     answerInput.value = '';
 }
 
 // ===== GERAR SOM DE RUÍDO =====
 function playNoiseSound() {
-    // Usar Web Audio API para gerar ruído branco
-    const audioContext = new (window.AudioContext || window.webkitAudioContext)();
-    
-    // Duração do som
-    const duration = 0.5; // 500ms
-    const now = audioContext.currentTime;
-    
-    // Criar buffer de ruído
-    const bufferSize = audioContext.sampleRate * duration;
-    const buffer = audioContext.createBuffer(1, bufferSize, audioContext.sampleRate);
-    const data = buffer.getChannelData(0);
-    
-    // Preencher buffer com ruído aleatório
-    for (let i = 0; i < bufferSize; i++) {
-        data[i] = Math.random() * 2 - 1;
+    try {
+        const audioContext = new (window.AudioContext || window.webkitAudioContext)();
+        
+        // Duração do som
+        const duration = 0.5; // 500ms
+        const now = audioContext.currentTime;
+        
+        // Criar buffer de ruído
+        const bufferSize = audioContext.sampleRate * duration;
+        const buffer = audioContext.createBuffer(1, bufferSize, audioContext.sampleRate);
+        const data = buffer.getChannelData(0);
+        
+        // Preencher buffer com ruído aleatório
+        for (let i = 0; i < bufferSize; i++) {
+            data[i] = Math.random() * 2 - 1;
+        }
+        
+        // Criar fonte
+        const source = audioContext.createBufferSource();
+        source.buffer = buffer;
+        
+        // Criar volume envelope (fade in/out)
+        const gainNode = audioContext.createGain();
+        gainNode.gain.setValueAtTime(0.3, now);
+        gainNode.gain.exponentialRampToValueAtTime(0.01, now + duration);
+        
+        // Conectar e reproduzir
+        source.connect(gainNode);
+        gainNode.connect(audioContext.destination);
+        source.start(now);
+        source.stop(now + duration);
+    } catch (e) {
+        console.log('Audio context not available');
     }
-    
-    // Criar fonte
-    const source = audioContext.createBufferSource();
-    source.buffer = buffer;
-    
-    // Criar volume envelope (fade in/out)
-    const gainNode = audioContext.createGain();
-    gainNode.gain.setValueAtTime(0.3, now);
-    gainNode.gain.exponentialRampToValueAtTime(0.01, now + duration);
-    
-    // Conectar e reproduzir
-    source.connect(gainNode);
-    gainNode.connect(audioContext.destination);
-    source.start(now);
-    source.stop(now + duration);
 }
 
 // ===== EFEITO DE NÚMEROS EXPLODINDO =====
 function createNumberBurst() {
-    const popupRect = document.querySelector('.popup-content').getBoundingClientRect();
+    const popup = document.querySelector('.popup-content');
+    if (!popup) return;
+    
+    const popupRect = popup.getBoundingClientRect();
     const centerX = popupRect.left + popupRect.width / 2;
     const centerY = popupRect.top + popupRect.height / 2;
     

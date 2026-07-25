@@ -24,7 +24,90 @@
     transform: translateX(-5px);
 }
 
-/* SEÇÃO DE MEMÓRIA */
+/* NÚMERO FIXO PARA MEMÓRIA */
+.fixed-number-memory {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    font-size: 1.2rem;
+    color: var(--accent-red);
+    font-family: 'Courier New', monospace;
+    font-weight: bold;
+    z-index: 500;
+    cursor: pointer;
+    opacity: 0.6;
+    transition: all 0.3s ease;
+    text-shadow: 0 0 8px rgba(204, 0, 0, 0.4);
+    animation: pulse 2s infinite;
+}
+
+.fixed-number-memory:hover {
+    opacity: 1;
+    text-shadow: 0 0 15px rgba(204, 0, 0, 0.8);
+    transform: scale(1.2);
+}
+
+/* ===== PUZZLE STYLES ===== */
+
+.puzzle-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(180deg, rgba(26, 26, 26, 0.95) 0%, rgba(10, 10, 10, 0.98) 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 100;
+    overflow: hidden;
+}
+
+.puzzle-wrapper {
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+
+.puzzle-piece {
+    position: absolute;
+    background-size: 300px 400px;
+    background-repeat: no-repeat;
+    cursor: grab;
+    border: 2px solid rgba(204, 0, 0, 0.3);
+    border-radius: 8px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
+    transition: box-shadow 0.3s ease;
+    user-select: none;
+}
+
+.puzzle-piece:hover {
+    box-shadow: 0 10px 40px rgba(204, 0, 0, 0.4);
+    border-color: rgba(204, 0, 0, 0.6);
+}
+
+.puzzle-piece:active {
+    cursor: grabbing;
+}
+
+.puzzle-piece.snapped {
+    border-color: rgba(204, 0, 0, 0.8);
+    box-shadow: 0 0 20px rgba(204, 0, 0, 0.5);
+}
+
+@keyframes fadeOut {
+    from {
+        opacity: 1;
+        pointer-events: all;
+    }
+    to {
+        opacity: 0;
+        pointer-events: none;
+    }
+}
+
+/* ===== CONTEÚDO DE MEMÓRIA ===== */
+
 .memory-section {
     min-height: 100vh;
     padding: 100px 2rem 50px;
@@ -34,39 +117,70 @@
 }
 
 .memory-content {
-    max-width: 900px;
+    max-width: 1200px;
     margin: 0 auto;
 }
 
-.memory-title {
-    font-size: 3rem;
-    font-weight: 900;
-    color: var(--accent-red);
-    text-shadow: 0 0 20px rgba(204, 0, 0, 0.5);
-    margin-bottom: 3rem;
-    text-align: center;
-    letter-spacing: 2px;
+.memory-paragraph {
+    margin-bottom: 4rem;
+    padding: 2rem;
+    background: linear-gradient(135deg, rgba(30, 30, 30, 0.6) 0%, rgba(20, 20, 20, 0.7) 100%);
+    border-left: 3px solid var(--accent-red);
+    border-radius: 8px;
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 2rem;
 }
 
-.memory-paragraph {
+.paragraph-skull {
+    width: 150px;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 8px;
+    opacity: 0.8;
+    filter: drop-shadow(0 10px 20px rgba(204, 0, 0, 0.3));
+    flex-shrink: 0;
+}
+
+.paragraph-right {
+    flex-direction: row-reverse;
+}
+
+.paragraph-left {
+    flex-direction: row;
+}
+
+.typing-text {
     font-size: 1.2rem;
     line-height: 1.9;
     color: var(--text-muted);
-    margin-bottom: 2.5rem;
     text-align: justify;
     font-family: 'Courier New', monospace;
-    padding: 1.5rem;
-    background: linear-gradient(135deg, rgba(30, 30, 30, 0.5) 0%, rgba(20, 20, 20, 0.6) 100%);
-    border-left: 3px solid var(--accent-red);
-    border-radius: 8px;
-    opacity: 0;
-    transform: translateY(30px);
-    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+    min-height: 100px;
 }
 
-.memory-paragraph.visible {
-    opacity: 1;
-    transform: translateY(0);
+/* Animações de entrada */
+@keyframes slideInFromRight {
+    from {
+        opacity: 0;
+        transform: translateX(100px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes slideInFromLeft {
+    from {
+        opacity: 0;
+        transform: translateX(-100px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
 }
 
 /* POP-UP */
@@ -242,18 +356,33 @@
         font-size: 0.8rem;
     }
 
+    .fixed-number-memory {
+        top: 10px;
+        right: 10px;
+        font-size: 1rem;
+    }
+
     .memory-section {
         padding: 80px 1rem 50px;
     }
 
-    .memory-title {
-        font-size: 2rem;
+    .memory-paragraph {
+        flex-direction: column;
+        padding: 1rem;
     }
 
-    .memory-paragraph {
+    .paragraph-right,
+    .paragraph-left {
+        flex-direction: column;
+    }
+
+    .paragraph-skull {
+        width: 100%;
+        height: auto;
+    }
+
+    .typing-text {
         font-size: 1rem;
-        padding: 1rem;
-        margin-bottom: 1.5rem;
     }
 
     .popup-content {

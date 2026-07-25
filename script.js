@@ -3,17 +3,15 @@ window.addEventListener('load', () => {
     setTimeout(() => {
         const splashScreen = document.getElementById('splashScreen');
         if (splashScreen) {
-            splashScreen.style.pointerEvents = '    none';
+            splashScreen.style.pointerEvents = 'none';
         }
     }, 3000);
 });
 
-// Gerar números flutuantes aleatórios (estilo Mason numbers de COD)
+// Gerar números flutuantes aleatórios com mudança contínua (estilo Mason numbers de COD)
 function createFloatingNumber() {
-    const randomNumber = Math.floor(Math.random() * 1000).toString().padStart(3, '0');
     const floatingNum = document.createElement('div');
     floatingNum.className = 'floating-number';
-    floatingNum.textContent = randomNumber;
     
     // Posição aleatória na tela (em toda a altura)
     const randomX = Math.random() * (window.innerWidth - 50);
@@ -23,23 +21,41 @@ function createFloatingNumber() {
     floatingNum.style.top = randomY + 'px';
     
     // Duração aleatória para variação
-    const duration = 4 + Math.random() * 4;
+    const duration = 3 + Math.random() * 3;
     floatingNum.style.animationDuration = duration + 's';
+    
+    // Iniciar com número aleatório
+    let currentNumber = Math.floor(Math.random() * 10);
+    floatingNum.textContent = currentNumber;
     
     document.body.appendChild(floatingNum);
     
+    // Mudar números continuamente enquanto está na tela
+    let changeCount = 0;
+    const changeInterval = setInterval(() => {
+        currentNumber = Math.floor(Math.random() * 10);
+        floatingNum.textContent = currentNumber;
+        changeCount++;
+        
+        // Parar de mudar perto do final
+        if (changeCount > Math.floor(duration * 10)) {
+            clearInterval(changeInterval);
+        }
+    }, 100); // Muda a cada 100ms
+    
     // Remover elemento após animação
     setTimeout(() => {
+        clearInterval(changeInterval);
         floatingNum.remove();
     }, duration * 1000);
 }
 
-// Criar números flotuantes continuamente
+// Criar números flotuantes com mais frequência
 setInterval(() => {
-    if (Math.random() > 0.4) {
+    if (Math.random() > 0.25) { // Antes era 0.4, agora 0.25 = mais frequente
         createFloatingNumber();
     }
-}, 800);
+}, 500); // Antes era 800ms, agora 500ms = mais frequente
 
 // Smooth scroll para links de navegação
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
@@ -77,12 +93,14 @@ document.querySelectorAll('section').forEach(section => {
 });
 
 // Hover effect no número fixo
-const fixedNumber = document.querySelector('.fixed-number');
-if (fixedNumber) {
-    fixedNumber.addEventListener('mouseenter', function() {
-        this.style.fontSize = '1.5rem';
-    });
-    fixedNumber.addEventListener('mouseleave', function() {
-        this.style.fontSize = '1.2rem';
-    });
-}
+const fixedNumbers = document.querySelectorAll('.fixed-number, .fixed-number-memory');
+fixedNumbers.forEach(fixedNumber => {
+    if (fixedNumber) {
+        fixedNumber.addEventListener('mouseenter', function() {
+            this.style.fontSize = '1.5rem';
+        });
+        fixedNumber.addEventListener('mouseleave', function() {
+            this.style.fontSize = '1.2rem';
+        });
+    }
+});

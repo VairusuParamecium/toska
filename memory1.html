@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Memória 1 - Notas em Toska</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="memory.css">
 </head>
 
@@ -18,76 +18,42 @@
         </div>
     </div>
 
-    <!-- NÚMERO FIXO -->
-    <span class="fixed-number" id="memoryTrigger">23:59</span>
+    <!-- NÚMERO FIXO (canto superior esquerdo) -->
+    <span class="fixed-number-memory" id="memoryTrigger">23:59</span>
 
     <!-- BOTÃO VOLTAR -->
     <a href="index.html" class="btn-back">← Voltar</a>
 
-    <!-- CONTEÚDO PRINCIPAL -->
-
-        <!-- HISTÓRIA -->
-    <section id="story" class="story">
-        <div class="divider"></div>
-        
-        <div class="story-container">
-            <div class="story-header">
-                <h2 class="section-title story-title">Os <span class="highlight">Fragmentos</span></h2>
-            </div>
-
-            <div class="story-content">
-                <p class="story-text">
-                    Pouco tempo depois de tudo... "Aquilo", a minha vida ficou nublada, sentindo um sentimento profundo de
-                    <span class="story-highlight">toska</span>
-                    que não sai do meu ser... E eu sei que vai ficar grudado até... Eu entender? Mas eu já sei o que eu
-                    fiz... Até eu esquecer talvez? A realidade é estranha.
-                </p>
-                <p class="story-text">
-                    Mas o que me estranha é o cheiro de algo doce, não lembro o decorrer dos outros dias, mas sinto que
-                    minha <span class="story-highlight">cabeça</span> não está mais no lugar. Desde quando meus olhos eram
-                    tão brilhantes assim? Huh...
-                </p>
-                <p class="story-text">
-                    Quando sinto cheiro de <span class="story-highlight">querosene</span> me vejo em um lugar de escombros
-                    queimados. Eu sei o que aconteceu ali, fui eu quem fiz aquilo, mas era para sentir remorso? Foi uma
-                    justiça, suja, mas ainda justa.
-                </p>
-            </div>
+    <!-- CONTAINER DO PUZZLE -->
+    <div class="puzzle-container" id="puzzleContainer">
+        <div class="puzzle-wrapper" id="puzzleWrapper">
+            <!-- Pedaços do puzzle serão inseridos aqui pelo JS -->
         </div>
-    </section>
-    
-    <section class="memory-section">
+    </div>
+
+    <!-- CONTEÚDO DE TEXTO (escondido até puzzle ser completo) -->
+    <section class="memory-section" id="memoryContent" style="display: none;">
+        <!-- NÚMERO FIXO PARA MEMÓRIA (canto superior esquerdo) -->
+        <span class="fixed-number-memory" id="memoryTriggerText">23:59</span>
+
         <div class="memory-content">
-            <h1 class="memory-title">Isso não é uma boa forma de celebrar</h1>
-            
-            <p class="memory-paragraph reveal-on-scroll">
-                Deveria querer lembrar? Acho que isso é apenas uma forma de tentar deixar um capítulo passado. 
-                Talvez seja melhor assim. Mas a memória não funciona assim, não é verdade? Ela teima, ela persiste, 
-                ela grita nos momentos mais silenciosos da noite.
-            </p>
+            <!-- Parágrafo 1 - Vindo da direita -->
+            <div class="memory-paragraph typing-paragraph paragraph-right" data-direction="right">
+                <p class="typing-text">Pouco tempo depois de tudo... "Aquilo", a minha vida ficou nublada, sentindo um sentimento profundo de toska que não sai do meu ser... E eu sei que vai ficar grudado até... Eu entender? Mas eu já sei o que eu fiz... Até eu esquecer talvez? A realidade é estranha.</p>
+                <img src="caveira.png" alt="Caveira" class="paragraph-skull">
+            </div>
 
-            <p class="memory-paragraph reveal-on-scroll">
-                Cada detalhe é nítido. A forma como a luz entrava pela janela, o cheiro do ar naquela manhã, 
-                o som de passos que não era meu. E no entanto, tudo é borrado, tudo é abstraído em uma névoa 
-                que não consigo penetrar completamente. É como tentar segurar água nas mãos.
-            </p>
+            <!-- Parágrafo 2 - Vindo da esquerda -->
+            <div class="memory-paragraph typing-paragraph paragraph-left" data-direction="left">
+                <p class="typing-text">Quando sinto cheiro de querosene me vejo em um lugar de escombros queimados. Eu sei o que aconteceu ali, fui eu quem fiz aquilo, mas era para sentir remorso? Foi uma justiça, suja, mas ainda justa. A memória não funciona assim, não é verdade?</p>
+                <img src="caveira.png" alt="Caveira" class="paragraph-skull">
+            </div>
 
-            <p class="memory-paragraph reveal-on-scroll">
-                Há algo errado comigo, eu acho. Algo que não deveria estar aqui. Os pensamentos fluem como 
-                uma corrente que não consigo controlar, levando-me a lugares que preferiria não ir. Mas 
-                talvez seja apenas a toska. Aquela sensação profunda, indefinível, que senta no peito e 
-                se recusa a sair.
-            </p>
-
-            <p class="memory-paragraph reveal-on-scroll">
-                A celebração, se é que posso chamar assim, foi amarga. Fria. Como mastigar vidro esperando 
-                encontrar ouro. Esperava que houvesse alguma sensação de conclusão, de encerramento. Mas 
-                não havia nada além de um vazio ainda maior, um silêncio ainda mais ensurdecedor.
-            </p>
-
-            <p class="memory-paragraph reveal-on-scroll">
-                Então, deveria querer lembrar? Não, prefiro esquecer. Mas a memória não me dá essa escolha.
-            </p>
+            <!-- Parágrafo 3 - Vindo da esquerda -->
+            <div class="memory-paragraph typing-paragraph paragraph-left" data-direction="left">
+                <p class="typing-text">Mas o que me estranha é o cheiro de algo doce, não lembro o decorrer dos outros dias, mas sinto que minha cabeça não está mais no lugar. Desde quando meus olhos eram tão brilhantes assim? Talvez esta seja minha nova realidade. Um pós-algum tempo, suspenso entre o que era e o que nunca será.</p>
+                <img src="caveira.png" alt="Caveira" class="paragraph-skull">
+            </div>
         </div>
     </section>
 
@@ -100,7 +66,7 @@
             </div>
             
             <div class="popup-body">
-                <p class="popup-question">Como é segurar a mão de alguém amado?</p>
+                <p class="popup-question">Como é segurar um cubo?</p>
                 
                 <input type="text" id="answerInput" class="popup-input" placeholder="Digite sua resposta...">
                 
@@ -113,6 +79,7 @@
 
     <script src="script.js"></script>
     <script src="memory.js"></script>
+    <script src="puzzle.js"></script>
 </body>
 
 </html>
